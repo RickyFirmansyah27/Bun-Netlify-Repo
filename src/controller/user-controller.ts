@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Logger } from '../helper';
+import { BaseResponse, Logger } from '../helper';
 import 'express-boom';
 
 interface User {
@@ -13,8 +13,10 @@ const users: User[] = [];
 
 export class UserController {
     static async getUser(req: Request, res: Response): Promise<void> {
+        const contextLogger = 'UserController';
         try {
-            res.send('Hello World');
+            Logger.info(`${contextLogger} | getUser`, users);
+            return BaseResponse(res, 'User created successfully', 'success', { data: users })
         } catch (error) {
             res.boom.internal('Internal Server Error');
         }
@@ -26,8 +28,8 @@ export class UserController {
             const payload = req.body;
             payload.id = users.length + 1;
             users.push(payload);
-            Logger.info(`${contextLogger} | UserController`, users);
-            res.status(201).json(users);
+            Logger.info(`${contextLogger} | createUser`, users);
+            return BaseResponse(res, 'User created successfully', 'success', { data: users })
         } catch (error) {
             res.boom.internal('Internal Server Error');
         }
