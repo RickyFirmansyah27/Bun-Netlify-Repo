@@ -1,22 +1,12 @@
 {
-    "version": 2,
-    "env": {
-      "BASE_PATH": "/express"
-    },
-    "builds": [
-      {
-        "src": "dist/index.ts",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "^/express/(.*)",
-        "dest": "dist/index.ts"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "dist/index.ts"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "src/index.ts" }
+  ]
+}
