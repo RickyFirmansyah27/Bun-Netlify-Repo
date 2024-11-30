@@ -1,6 +1,6 @@
 import userRoute from './user-route';
 
-const basePath = '/api/v1/data';
+const basePath = '/express';
 
 export const routes = [
     { path: `${basePath}/user`, router: userRoute },
