@@ -20,6 +20,7 @@ export class UserController {
             Logger.info(`${contextLogger} | getUser`, users);
             return BaseResponse(res, 'User created successfully', 'success', { data: users })
         } catch (error) {
+            Logger.error(`${contextLogger} | Error: ${error} | Message: ${error}`);
             res.boom.internal('Internal Server Error');
         }
     }
